@@ -5,6 +5,9 @@
  */
 package View;
 
+import javax.swing.JTable;
+import javax.swing.JTextField;
+
 /**
  *
  * @author FOLIO 1040 G3
@@ -16,8 +19,22 @@ public class MKategoriBarang extends javax.swing.JFrame {
      */
     public MKategoriBarang() {
         initComponents();
+        setLocationRelativeTo(this);
     }
 
+    public JTable getTblkategori() {
+        return tblkategori;
+    }
+
+    public JTextField getTxtkdkategori() {
+        return txtkdkategori;
+    }
+
+    public JTextField getTxtnmkategori() {
+        return txtnmkategori;
+    }
+
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -31,7 +48,7 @@ public class MKategoriBarang extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         txtnmkategori = new javax.swing.JTextField();
-        txtkdkategori1 = new javax.swing.JTextField();
+        txtkdkategori = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblkategori = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
@@ -56,8 +73,8 @@ public class MKategoriBarang extends javax.swing.JFrame {
         jLabel3.setBounds(29, 155, 70, 14);
         getContentPane().add(txtnmkategori);
         txtnmkategori.setBounds(160, 155, 218, 35);
-        getContentPane().add(txtkdkategori1);
-        txtkdkategori1.setBounds(161, 90, 218, 35);
+        getContentPane().add(txtkdkategori);
+        txtkdkategori.setBounds(161, 90, 218, 35);
 
         tblkategori.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -146,7 +163,7 @@ public class MKategoriBarang extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblkategori;
-    private javax.swing.JTextField txtkdkategori1;
+    private javax.swing.JTextField txtkdkategori;
     private javax.swing.JTextField txtnmkategori;
     // End of variables declaration//GEN-END:variables
 }
