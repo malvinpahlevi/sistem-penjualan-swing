@@ -5,6 +5,8 @@
  */
 package View;
 
+import Controller.Controller_Kategori;
+import java.awt.event.KeyEvent;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
@@ -14,12 +16,16 @@ import javax.swing.JTextField;
  */
 public class MKategoriBarang extends javax.swing.JFrame {
 
+    Controller_Kategori controller;
     /**
      * Creates new form MKategoriBarang
      */
     public MKategoriBarang() {
         initComponents();
         setLocationRelativeTo(this);
+        controller = new Controller_Kategori(this);
+        controller.isiTable();
+        controller.reset();
     }
 
     public JTable getTblkategori() {
@@ -51,7 +57,7 @@ public class MKategoriBarang extends javax.swing.JFrame {
         txtkdkategori = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblkategori = new javax.swing.JTable();
-        jButton2 = new javax.swing.JButton();
+        cmdsimpan = new javax.swing.JButton();
         cmdbatal = new javax.swing.JButton();
         cmdubah = new javax.swing.JButton();
         cmdhapus = new javax.swing.JButton();
@@ -71,8 +77,23 @@ public class MKategoriBarang extends javax.swing.JFrame {
         jLabel3.setText("Nama Kategori");
         getContentPane().add(jLabel3);
         jLabel3.setBounds(29, 155, 70, 14);
+
+        txtnmkategori.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtnmkategoriKeyPressed(evt);
+            }
+        });
         getContentPane().add(txtnmkategori);
         txtnmkategori.setBounds(160, 155, 218, 35);
+
+        txtkdkategori.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtkdkategoriKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtkdkategoriKeyReleased(evt);
+            }
+        });
         getContentPane().add(txtkdkategori);
         txtkdkategori.setBounds(161, 90, 218, 35);
 
@@ -87,36 +108,105 @@ public class MKategoriBarang extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblkategori.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblkategoriMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblkategori);
 
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(29, 258, 523, 180);
 
-        jButton2.setBackground(new java.awt.Color(153, 255, 102));
-        jButton2.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        jButton2.setText("SIMPAN");
-        getContentPane().add(jButton2);
-        jButton2.setBounds(450, 80, 90, 30);
+        cmdsimpan.setBackground(new java.awt.Color(153, 255, 102));
+        cmdsimpan.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        cmdsimpan.setText("SIMPAN");
+        cmdsimpan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdsimpanActionPerformed(evt);
+            }
+        });
+        getContentPane().add(cmdsimpan);
+        cmdsimpan.setBounds(450, 80, 90, 30);
 
         cmdbatal.setBackground(new java.awt.Color(255, 153, 153));
         cmdbatal.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         cmdbatal.setText("BATAL");
+        cmdbatal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdbatalActionPerformed(evt);
+            }
+        });
         getContentPane().add(cmdbatal);
         cmdbatal.setBounds(450, 210, 90, 30);
 
         cmdubah.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         cmdubah.setText("UBAH");
+        cmdubah.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdubahActionPerformed(evt);
+            }
+        });
         getContentPane().add(cmdubah);
         cmdubah.setBounds(450, 120, 90, 30);
 
         cmdhapus.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         cmdhapus.setText("HAPUS");
+        cmdhapus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdhapusActionPerformed(evt);
+            }
+        });
         getContentPane().add(cmdhapus);
         cmdhapus.setBounds(450, 160, 90, 30);
 
         setSize(new java.awt.Dimension(598, 500));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void cmdsimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdsimpanActionPerformed
+        controller.insert();
+        controller.reset();
+    }//GEN-LAST:event_cmdsimpanActionPerformed
+
+    private void cmdubahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdubahActionPerformed
+        controller.update();
+        controller.reset();
+    }//GEN-LAST:event_cmdubahActionPerformed
+
+    private void cmdhapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdhapusActionPerformed
+        controller.delete();
+        controller.reset();
+    }//GEN-LAST:event_cmdhapusActionPerformed
+
+    private void cmdbatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdbatalActionPerformed
+        controller.reset();
+    }//GEN-LAST:event_cmdbatalActionPerformed
+
+    private void tblkategoriMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblkategoriMouseClicked
+        controller.isiField(tblkategori.getSelectedRow());
+        this.txtkdkategori.requestFocus();
+    }//GEN-LAST:event_tblkategoriMouseClicked
+
+    private void txtkdkategoriKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtkdkategoriKeyReleased
+        controller.isiTableCari();
+    }//GEN-LAST:event_txtkdkategoriKeyReleased
+
+    private void txtkdkategoriKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtkdkategoriKeyPressed
+        if (evt.getKeyCode()==KeyEvent.VK_ENTER) {
+            if (txtkdkategori.getText().isEmpty()) {
+                controller.reset();
+            }else
+                controller.isiTable();
+            this.txtnmkategori.requestFocus();
+        }
+    }//GEN-LAST:event_txtkdkategoriKeyPressed
+
+    private void txtnmkategoriKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnmkategoriKeyPressed
+        if (evt.getKeyCode()==KeyEvent.VK_ENTER) {
+            this.cmdsimpan.requestFocus();
+        }
+    }//GEN-LAST:event_txtnmkategoriKeyPressed
 
     /**
      * @param args the command line arguments
@@ -156,8 +246,8 @@ public class MKategoriBarang extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cmdbatal;
     private javax.swing.JButton cmdhapus;
+    private javax.swing.JButton cmdsimpan;
     private javax.swing.JButton cmdubah;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 16, 2020 at 05:43 PM
+-- Generation Time: Sep 19, 2020 at 05:16 AM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.7
 
@@ -68,9 +68,16 @@ CREATE TABLE `detilpesan` (
 --
 
 CREATE TABLE `kategori` (
-  `KdKategori` varchar(3) NOT NULL DEFAULT '',
+  `KdKategori` int(6) NOT NULL DEFAULT 0,
   `NmKategori` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `kategori`
+--
+
+INSERT INTO `kategori` (`KdKategori`, `NmKategori`) VALUES
+(2, 'obat');
 
 -- --------------------------------------------------------
 
