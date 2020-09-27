@@ -75,4 +75,12 @@ public class Controller_Petugas {
     }
     
     
+    //method untuk meletakan data ke dalam text berdasarkan data yang dipilih dari JTable
+    public void isiField(int row){
+        form.getTxtkdpetugas().setText(String.valueOf(list.get(row).getKode()));
+        form.getTxtnmpetugas().setText(list.get(row).getNama());
+        form.getTxtalamat().setText(list.get(row).getAlamat());
+        form.getTxttelp().setText(list.get(row).getAlamat());
+    }
+    
 }
