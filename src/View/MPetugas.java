@@ -5,6 +5,10 @@
  */
 package View;
 
+import javax.swing.JTable;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
 /**
  *
  * @author FOLIO 1040 G3
@@ -18,6 +22,31 @@ public class MPetugas extends javax.swing.JFrame {
         initComponents();
     }
 
+    public JTable getTblpetugas() {
+        return tblpetugas;
+    }
+
+    public JTextArea getTxtalamat() {
+        return txtalamat;
+    }
+
+    public JTextField getTxtkatakunci() {
+        return txtkatakunci;
+    }
+
+    public JTextField getTxtkdpetugas() {
+        return txtkdpetugas;
+    }
+
+    public JTextField getTxtnmpetugas() {
+        return txtnmpetugas;
+    }
+
+    public JTextField getTxttelp() {
+        return txttelp;
+    }
+
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -33,7 +62,7 @@ public class MPetugas extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         txttelp = new javax.swing.JTextField();
-        txtkdpetugas1 = new javax.swing.JTextField();
+        txtkdpetugas = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtalamat = new javax.swing.JTextArea();
         txtkatakunci = new javax.swing.JTextField();
@@ -43,7 +72,7 @@ public class MPetugas extends javax.swing.JFrame {
         cmdbatal = new javax.swing.JButton();
         cmdubah3 = new javax.swing.JButton();
         cmdhapus1 = new javax.swing.JButton();
-        txtnmpetugas2 = new javax.swing.JTextField();
+        txtnmpetugas = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblpetugas = new javax.swing.JTable();
@@ -79,8 +108,8 @@ public class MPetugas extends javax.swing.JFrame {
         });
         getContentPane().add(txttelp);
         txttelp.setBounds(170, 280, 240, 30);
-        getContentPane().add(txtkdpetugas1);
-        txtkdpetugas1.setBounds(170, 80, 240, 30);
+        getContentPane().add(txtkdpetugas);
+        txtkdpetugas.setBounds(170, 80, 240, 30);
 
         txtalamat.setColumns(20);
         txtalamat.setRows(5);
@@ -129,13 +158,13 @@ public class MPetugas extends javax.swing.JFrame {
         getContentPane().add(cmdhapus1);
         cmdhapus1.setBounds(500, 180, 110, 30);
 
-        txtnmpetugas2.addActionListener(new java.awt.event.ActionListener() {
+        txtnmpetugas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtnmpetugas2ActionPerformed(evt);
+                txtnmpetugasActionPerformed(evt);
             }
         });
-        getContentPane().add(txtnmpetugas2);
-        txtnmpetugas2.setBounds(170, 130, 240, 30);
+        getContentPane().add(txtnmpetugas);
+        txtnmpetugas.setBounds(170, 130, 240, 30);
 
         jLabel6.setText("No. Telepon");
         getContentPane().add(jLabel6);
@@ -168,9 +197,9 @@ public class MPetugas extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtkatakunciActionPerformed
 
-    private void txtnmpetugas2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnmpetugas2ActionPerformed
+    private void txtnmpetugasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnmpetugasActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtnmpetugas2ActionPerformed
+    }//GEN-LAST:event_txtnmpetugasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -225,8 +254,8 @@ public class MPetugas extends javax.swing.JFrame {
     private javax.swing.JTable tblpetugas;
     private javax.swing.JTextArea txtalamat;
     private javax.swing.JTextField txtkatakunci;
-    private javax.swing.JTextField txtkdpetugas1;
-    private javax.swing.JTextField txtnmpetugas2;
+    private javax.swing.JTextField txtkdpetugas;
+    private javax.swing.JTextField txtnmpetugas;
     private javax.swing.JTextField txttelp;
     // End of variables declaration//GEN-END:variables
 }
