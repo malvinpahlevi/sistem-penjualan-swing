@@ -1,0 +1,53 @@
+[33mcommit b655016b00f628b710b61f79919d2db151e7fff8[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Author: malvinpahlevi <malvinfrog@gmail.com>
+Date:   Mon Sep 28 19:00:17 2020 +0700
+
+    completed controller and configure txtKataKunci for search by kode
+
+[33mcommit 43df2445ed936d9636356381666ec79d44a6ccff[m
+Author: malvinpahlevi <malvinfrog@gmail.com>
+Date:   Mon Sep 28 17:31:50 2020 +0700
+
+    configure View MPetugasjava
+
+[33mcommit df6617e03db5fd606de0b2bca19f700922f56e19[m
+Author: malvinpahlevi <malvinfrog@gmail.com>
+Date:   Sun Sep 27 11:17:37 2020 +0700
+
+    add method for Fill textfield from list obj
+
+[33mcommit 12b3ca0f2bab4239da0df66a11a15891bac2f208[m
+Author: malvinpahlevi <malvinfrog@gmail.com>
+Date:   Sun Sep 27 11:13:50 2020 +0700
+
+    adding some method in ControllerPetugas
+
+[33mcommit bb60977b09d85df493d0ebc83b1b973283abe40f[m
+Author: malvinpahlevi <malvinfrog@gmail.com>
+Date:   Sun Sep 27 10:53:29 2020 +0700
+
+    add DAO Petugas
+
+[33mcommit 424aaa2cb6dac80425405da9f7b5718832165194[m
+Author: malvinpahlevi <malvinfrog@gmail.com>
+Date:   Sat Sep 26 13:50:42 2020 +0700
+
+    add feature of Kategori DAO Controller Model View
+
+[33mcommit e70eb6c20a965767fcb14b6066863f47b1e0da53[m
+Author: malvinpahlevi <malvinfrog@gmail.com>
+Date:   Sat Sep 19 10:17:28 2020 +0700
+
+    update schema database sql
+
+[33mcommit da04668e96a44ca7ef5ab6f072c76fe602054813[m
+Author: malvinpahlevi <malvinfrog@gmail.com>
+Date:   Thu Sep 17 09:35:24 2020 +0700
+
+    add getters kategori barang
+
+[33mcommit e995883ca5c0b7c9290992740298ee7d02537cbf[m
+Author: malvinpahlevi <malvinfrog@gmail.com>
+Date:   Wed Sep 16 22:57:33 2020 +0700
+
+    project sistem penjualan Fitur Menu Pelanggan
