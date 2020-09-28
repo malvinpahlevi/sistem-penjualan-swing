@@ -5,6 +5,7 @@
  */
 package View;
 
+import Controller.Controller_Petugas;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -15,11 +16,17 @@ import javax.swing.JTextField;
  */
 public class MPetugas extends javax.swing.JFrame {
 
+    Controller_Petugas controller;
+    
     /**
      * Creates new form MPetugas
      */
     public MPetugas() {
         initComponents();
+        setLocationRelativeTo(this);
+        controller = new Controller_Petugas(this);
+        controller.isiTable();
+        controller.reset();
     }
 
     public JTable getTblpetugas() {

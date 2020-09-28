@@ -11,6 +11,7 @@ import Model.Petugas;
 import View.MPetugas;
 import java.awt.Color;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -53,7 +54,7 @@ public class Controller_Petugas {
     }
 
     //method untuk menampilkan semua data kedalam JTable
-    private void isiTable() {
+    public void isiTable() {
         list = model.getAll();
         
         //script agar JTable tidak bisa diedit
@@ -83,4 +84,49 @@ public class Controller_Petugas {
         form.getTxttelp().setText(list.get(row).getAlamat());
     }
     
+    //method untuk simpan data
+   public void insert(){
+       Petugas p = new Petugas();
+       p.setKode(Integer.parseInt(form.getTxtkdpetugas().getText()));
+       p.setNama(form.getTxtnmpetugas().getText());
+       p.setAlamat(form.getTxtalamat().getText());
+       p.setTelepon(form.getTxttelp().getText());
+       model.insert(p);
+   }
+   
+   //method untuk mengubah data
+   public void update(){
+       Petugas p = new Petugas();
+       p.setKode(Integer.parseInt(form.getTxtkdpetugas().getText()));
+       p.setNama(form.getTxtnmpetugas().getText());
+       p.setAlamat(form.getTxtnmpetugas().getText());
+       p.setTelepon(form.getTxttelp().getText());
+       model.update(p);
+   }
+   
+   //method untuk meghapus data
+   public void delete(){
+        if(!form.getTxtkdpetugas().getText().trim().isEmpty()){
+            int id = Integer.parseInt(form.getTxtkdpetugas().getText());
+            model.delete(id);
+        }else{
+            JOptionPane.showMessageDialog(form, "Pilih data yang akan dihapus");
+        }
+   }
+    
+   //method ini akan dipakai untuk memfilter data berdasarkan inputan yang ada pada text kode kategori
+   public void isiTableCari(){
+       list = model.getCari(form.getTxtkdpetugas().getText().trim());
+       DefaultTableModel tblModel = new DefaultTableModel(new Object[][]{}, header);
+       Object[] data = new Object[header.length];
+       for(Petugas p : list){
+            data[0] = p.getKode();
+            data[1] = p.getNama();
+            data[2] = p.getAlamat();
+            data[3] = p.getTelepon();
+            tblModel.addRow(data);
+        }
+        form.getTblpetugas().setModel(tblModel);
+   }
+   
 }
