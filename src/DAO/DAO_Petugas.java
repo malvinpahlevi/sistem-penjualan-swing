@@ -56,7 +56,7 @@ public class DAO_Petugas implements Model_DAO<Petugas>{
     public void insert(Petugas object) {
         PreparedStatement statement = null;
         try {
-            statement = connection.prepareStatement(SELECT);
+            statement = connection.prepareStatement(CARI);
             statement.setInt(1, object.getKode());
             ResultSet rs = statement.executeQuery();
             if (rs.next()) {

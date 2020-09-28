@@ -114,9 +114,9 @@ public class Controller_Petugas {
         }
    }
     
-   //method ini akan dipakai untuk memfilter data berdasarkan inputan yang ada pada text kode kategori
+   //method ini akan dipakai untuk memfilter data berdasarkan inputan yang ada pada txtkatakunci pencarian petugas
    public void isiTableCari(){
-       list = model.getCari(form.getTxtkdpetugas().getText().trim());
+       list = model.getCari(form.getTxtkatakunci().getText().trim());
        DefaultTableModel tblModel = new DefaultTableModel(new Object[][]{}, header);
        Object[] data = new Object[header.length];
        for(Petugas p : list){

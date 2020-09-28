@@ -6,6 +6,7 @@
 package View;
 
 import Controller.Controller_Petugas;
+import java.awt.event.KeyEvent;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -77,14 +78,14 @@ public class MPetugas extends javax.swing.JFrame {
         cmdsimpan1 = new javax.swing.JButton();
         cmdubah1 = new javax.swing.JButton();
         cmdbatal = new javax.swing.JButton();
-        cmdubah3 = new javax.swing.JButton();
+        cmdhapus = new javax.swing.JButton();
         cmdhapus1 = new javax.swing.JButton();
         txtnmpetugas = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblpetugas = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
@@ -115,6 +116,15 @@ public class MPetugas extends javax.swing.JFrame {
         });
         getContentPane().add(txttelp);
         txttelp.setBounds(170, 280, 240, 30);
+
+        txtkdpetugas.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtkdpetugasKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtkdpetugasKeyReleased(evt);
+            }
+        });
         getContentPane().add(txtkdpetugas);
         txtkdpetugas.setBounds(170, 80, 240, 30);
 
@@ -130,17 +140,35 @@ public class MPetugas extends javax.swing.JFrame {
                 txtkatakunciActionPerformed(evt);
             }
         });
+        txtkatakunci.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtkatakunciKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtkatakunciKeyReleased(evt);
+            }
+        });
         getContentPane().add(txtkatakunci);
         txtkatakunci.setBounds(170, 330, 240, 30);
 
         cmdubah.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         cmdubah.setText("UBAH");
+        cmdubah.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdubahActionPerformed(evt);
+            }
+        });
         getContentPane().add(cmdubah);
         cmdubah.setBounds(500, 130, 110, 30);
 
         cmdsimpan1.setBackground(new java.awt.Color(102, 255, 0));
         cmdsimpan1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         cmdsimpan1.setText("SIMPAN");
+        cmdsimpan1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdsimpan1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(cmdsimpan1);
         cmdsimpan1.setBounds(500, 80, 110, 30);
 
@@ -152,13 +180,23 @@ public class MPetugas extends javax.swing.JFrame {
         cmdbatal.setBackground(new java.awt.Color(255, 204, 204));
         cmdbatal.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         cmdbatal.setText("BATAL");
+        cmdbatal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdbatalActionPerformed(evt);
+            }
+        });
         getContentPane().add(cmdbatal);
         cmdbatal.setBounds(500, 250, 110, 30);
 
-        cmdubah3.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        cmdubah3.setText("HAPUS");
-        getContentPane().add(cmdubah3);
-        cmdubah3.setBounds(500, 180, 110, 30);
+        cmdhapus.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        cmdhapus.setText("HAPUS");
+        cmdhapus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdhapusActionPerformed(evt);
+            }
+        });
+        getContentPane().add(cmdhapus);
+        cmdhapus.setBounds(500, 180, 110, 30);
 
         cmdhapus1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         cmdhapus1.setText("HAPUS");
@@ -168,6 +206,11 @@ public class MPetugas extends javax.swing.JFrame {
         txtnmpetugas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtnmpetugasActionPerformed(evt);
+            }
+        });
+        txtnmpetugas.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtnmpetugasKeyPressed(evt);
             }
         });
         getContentPane().add(txtnmpetugas);
@@ -188,12 +231,17 @@ public class MPetugas extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblpetugas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblpetugasMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tblpetugas);
 
         getContentPane().add(jScrollPane2);
         jScrollPane2.setBounds(20, 390, 650, 140);
 
-        pack();
+        setBounds(0, 0, 702, 585);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txttelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txttelpActionPerformed
@@ -207,6 +255,64 @@ public class MPetugas extends javax.swing.JFrame {
     private void txtnmpetugasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnmpetugasActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtnmpetugasActionPerformed
+
+    private void cmdsimpan1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdsimpan1ActionPerformed
+        controller.insert();
+        controller.reset();
+    }//GEN-LAST:event_cmdsimpan1ActionPerformed
+
+    private void cmdubahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdubahActionPerformed
+        controller.update();
+        controller.reset();
+    }//GEN-LAST:event_cmdubahActionPerformed
+
+    private void cmdhapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdhapusActionPerformed
+        controller.delete();
+        controller.reset();
+    }//GEN-LAST:event_cmdhapusActionPerformed
+
+    private void cmdbatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdbatalActionPerformed
+        controller.reset();
+    }//GEN-LAST:event_cmdbatalActionPerformed
+
+    private void tblpetugasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblpetugasMouseClicked
+        controller.isiField(tblpetugas.getSelectedRow());
+        this.txtkdpetugas.requestFocus();
+    }//GEN-LAST:event_tblpetugasMouseClicked
+
+    private void txtkdpetugasKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtkdpetugasKeyReleased
+//        controller.isiTableCari();
+    }//GEN-LAST:event_txtkdpetugasKeyReleased
+
+    private void txtkdpetugasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtkdpetugasKeyPressed
+//        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+//            if(txtkdpetugas.getText().isEmpty()){
+//                controller.reset();
+//            }else
+//                controller.isiTable();
+//            this.txtnmpetugas.requestFocus();
+//        }
+    }//GEN-LAST:event_txtkdpetugasKeyPressed
+
+    private void txtnmpetugasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnmpetugasKeyPressed
+        if (evt.getKeyCode()==KeyEvent.VK_ENTER) {
+            this.cmdsimpan1.requestFocus();
+        }
+    }//GEN-LAST:event_txtnmpetugasKeyPressed
+
+    private void txtkatakunciKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtkatakunciKeyReleased
+        controller.isiTableCari();
+    }//GEN-LAST:event_txtkatakunciKeyReleased
+
+    private void txtkatakunciKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtkatakunciKeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            if(txtkatakunci.getText().isEmpty()){
+                controller.reset();
+            }else
+                controller.isiTable();
+            this.txtnmpetugas.requestFocus();
+        }
+    }//GEN-LAST:event_txtkatakunciKeyPressed
 
     /**
      * @param args the command line arguments
@@ -245,11 +351,11 @@ public class MPetugas extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cmdbatal;
+    private javax.swing.JButton cmdhapus;
     private javax.swing.JButton cmdhapus1;
     private javax.swing.JButton cmdsimpan1;
     private javax.swing.JButton cmdubah;
     private javax.swing.JButton cmdubah1;
-    private javax.swing.JButton cmdubah3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

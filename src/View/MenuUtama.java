@@ -146,7 +146,9 @@ public class MenuUtama extends javax.swing.JFrame {
     }//GEN-LAST:event_MKategoriActionPerformed
 
     private void MPetugasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MPetugasActionPerformed
-        // TODO add your handling code here:
+        View.MPetugas p = new View.MPetugas();
+        p.setVisible(true);
+        setLocationRelativeTo(this);
     }//GEN-LAST:event_MPetugasActionPerformed
 
     /**
