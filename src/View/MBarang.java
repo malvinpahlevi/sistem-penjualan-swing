@@ -5,6 +5,10 @@
  */
 package View;
 
+import javax.swing.JComboBox;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+
 /**
  *
  * @author FOLIO 1040 G3
@@ -16,6 +20,43 @@ public class MBarang extends javax.swing.JFrame {
      */
     public MBarang() {
         initComponents();
+        setLocationRelativeTo(this);
+    }
+
+    public JTable getTblbarang() {
+        return tblbarang;
+    }
+
+    public JTextField getTxtharga() {
+        return txtharga;
+    }
+
+    public JTextField getTxtkatakunci() {
+        return txtkatakunci;
+    }
+
+    public JTextField getTxtkdbarang() {
+        return txtkdbarang;
+    }
+
+    public JTextField getTxtnmbarang() {
+        return txtnmbarang;
+    }
+
+    public JTextField getTxtnmkategori() {
+        return txtnmkategori;
+    }
+
+    public JTextField getTxtstok() {
+        return txtstok;
+    }
+
+    public JComboBox<String> getCmbkategori() {
+        return cmbkategori;
+    }
+
+    public JComboBox<String> getCmbsatuan() {
+        return cmbsatuan;
     }
 
     /**
