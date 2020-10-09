@@ -22,6 +22,20 @@ public class DAO_Barang implements Model_DAO<Barang>{
         connection = Database.KoneksiDB();
     }
     
+    String INSERT = "INSERT INTO barang(kdbrg, nmbrg, satuan, hargabrg, stok, kdkategori) values(?,?,?,?,?,?)";
+    String UPDATE = "UPDATE barang SET nmbrg=?, satuan=?, hargabrg=?, stok=?, kdkategori=? WHERE kdbrg=?";
+    String DELETE = "DELETE FROM barang WHERE kdbrg=?";
+    String SELECT = "SELECT a.*, b.* FROM barang a, kategori b WHERE a.kdkategori=b.kdkategori ORDER BY kdbrg";
+    String CARI = "SELECT a.*, b.* FROM barang a, kategori b WHERE a.kdkategori=b.kdkategori AND kdbrg LIKE ?";
+    String CARIKATEGORI = "SELECT * FROM kategori WHERE kdkategori=?";
+    String COMBO = "SELECT kdkategori FROM kategori ORDER BY convert(right(kdkategori, 2), signed integer)";
+    String COUNTER = "SELECT ifnull(max(convert(right(kdbrg,2),signed integer)), 0) AS kode,"
+            + "ifnull(length(max(convet(right(kdbrg,2), signed integer))), 0) AS panjang"
+            + "FROM barang WHERE kdkategori=?";
+    
+    
+    
+    
     @Override
     public int autonumber(Barang object) {
         return 0;
