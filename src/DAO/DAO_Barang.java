@@ -111,9 +111,22 @@ public class DAO_Barang implements Model_DAO<Barang>{
         }    
     }
 
-    @Override
-    public void delete(Integer kode) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void delete(String id) {
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(DELETE);
+            statement.setString(1, id);
+            statement.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Data berhasil dihapus!");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally{
+            try {
+                statement.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(DAO_Kategori.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 
     @Override
