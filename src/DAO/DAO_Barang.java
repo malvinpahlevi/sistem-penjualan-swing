@@ -81,7 +81,34 @@ public class DAO_Barang implements Model_DAO<Barang>{
 
     @Override
     public void update(Barang object) {
-        
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(CARI);
+            statement.setString(1, object.getKodebarang());
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) //jika data sudah pernah disimpan
+            {
+                statement = connection.prepareStatement(UPDATE);
+                statement.setString(1, object.getNamabarang());
+                statement.setString(2, object.getSatuan());
+                statement.setInt(3, object.getHarga());
+                statement.setInt(4, object.getStok());
+                statement.setInt(5, object.getKodekategori());
+                statement.setString(5, object.getKodebarang());
+                statement.executeUpdate();
+                JOptionPane.showMessageDialog(null, "Data berhasil diubah!");
+            }else{//jika data belum pernah disimpan
+                JOptionPane.showMessageDialog(null, "Kode barang tersebut belum pernah disimpan!");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally{
+            try {
+                statement.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(DAO_Kategori.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }    
     }
 
     @Override
