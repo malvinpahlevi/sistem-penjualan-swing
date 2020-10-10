@@ -182,8 +182,39 @@ public class DAO_Barang implements Model_DAO<Barang>{
         return list;
     }
     
+    
+    /*
+    *
+    * Fungsi untuk membuat penomoran kode barang secara otomatis
+    * Berbeda dengan 2 file Master sebelumnya, penomoran ini
+    * menggunakan kombinasi angka dan huruf
+    */
     public String autonumber2(Integer id){
-        
+        PreparedStatement statement = null;
+        int nomor_berikutnya = 0;
+        String urutan = "";
+        try {
+            statement = connection.prepareStatement(COUNTER);
+            statement.setInt(1, id);
+            ResultSet rs2 = statement.executeQuery();
+            if (rs2.next()) {
+                nomor_berikutnya = rs2.getInt("kode") + 1;
+                if (rs2.getInt("kode")!= 0) {//jika kode kategori sudah pernah ada
+                    if (rs2.getInt("panjang")==1) {//jika jumlah digitnya adalah 1
+                        urutan = "B" + id + "0" + nomor_berikutnya;
+                    } else if (rs2.getInt("panjang") == 2){//jika jumlah digitnya adalah 2
+                        urutan = "B" + id + nomor_berikutnya;
+                    }else{//jika kode kategori belum pernah ada
+                        urutan = "B" + id + "01";
+                    }
+                }
+            }else{
+                JOptionPane.showMessageDialog(null, "Data tidak ditemukan!");
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return urutan;
     }
     
     public List<Barang> IsiCombo(){
