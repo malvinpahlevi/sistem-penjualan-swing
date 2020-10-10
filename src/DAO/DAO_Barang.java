@@ -157,7 +157,29 @@ public class DAO_Barang implements Model_DAO<Barang>{
 
     @Override
     public List<Barang> getCari(String key) {
-        
+        List<Barang> list = null;
+        PreparedStatement statement = null;
+        try {
+            list = new ArrayList<Barang>();
+            statement = connection.prepareStatement(CARI);
+            statement.setString(1, "%"+key+"%");
+            ResultSet rs = statement.executeQuery();
+            
+            while (rs.next()) {
+                Barang b = new Barang();
+                b.setKodebarang(rs.getString("kdbrg"));
+                b.setNamabarang(rs.getString("nmbrg"));
+                b.setSatuan(rs.getString("satuan"));
+                b.setHarga(rs.getInt("hargabrg"));
+                b.setStok(rs.getInt("stok"));
+                b.setKodekategori(rs.getInt("a.kdkategori"));
+                b.setNamakategori(rs.getString("nmkategori"));
+                list.add(b);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
     }
     
     public String autonumber2(Integer id){
