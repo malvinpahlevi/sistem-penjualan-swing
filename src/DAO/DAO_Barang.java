@@ -217,8 +217,26 @@ public class DAO_Barang implements Model_DAO<Barang>{
         return urutan;
     }
     
+    /*
+    *
+    * function to show data on JComboBox
+    */
     public List<Barang> IsiCombo(){
-        
+        PreparedStatement statement = null;
+        List<Barang> list = null;
+        try {
+            list = new ArrayList<Barang>();
+            statement = connection.prepareStatement(COMBO);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                Barang b = new Barang();
+                b.setKodekategori(rs.getInt("kdkategori"));
+                list.add(b);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
     }
     
     public List<Barang> getDataKategori(Integer id){
