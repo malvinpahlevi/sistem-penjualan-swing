@@ -10,6 +10,7 @@ import Model.Barang;
 import View.MBarang;
 import java.awt.Color;
 import java.util.List;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -47,5 +48,30 @@ public class Controller_Barang {
         if(form.getCmbkategori().getSelectedIndex() > 0){
             form.getTxtkdbarang().setText(String.valueOf(model.autonumber2(Integer.parseInt(form.getCmbkategori().getSelectedItem().toString()))));
         }
+    }
+    
+    //method untuk menampikan semua data kedalam JTable
+    public void isiTable(){
+        list = model.getAll();
+        //Script agar JTable tidak bisa diedit
+        DefaultTableModel tblModel = new DefaultTableModel(new Object[][]{}, header){
+            public boolean isiCellEditTable(int rowIndex, int columnIndex){
+                return false;
+            }
+        };
+        
+        Object[] data = new Object[header.length];
+        for (Barang B : list ) {
+            data[0] = B.getKodebarang();
+            data[1] = B.getNamabarang();
+            data[2] = B.getSatuan();
+            data[3] = B.getHarga();
+            data[4] = B.getStok();
+            data[5] = B.getKodekategori();
+            data[6] = B.getNamakategori();
+            tblModel.addRow(data);
+        }
+    
+        form.getTblbarang().setModel(tblModel);
     }
 }
