@@ -92,4 +92,15 @@ public class Controller_Barang {
         tampilUrutanKode();
         isiTable();
     }
+    
+    //method untuk meletakan data kedalam text berdasarkan data yang dipilih dari JTable
+    public void isiField(int row){
+        form.getCmbkategori().setSelectedItem(list.get(row).getKodekategori());
+        form.getTxtnmkategori().setText(list.get(row).getNamakategori());
+        form.getTxtkdbarang().setText(list.get(row).getKodebarang());
+        form.getTxtnmbarang().setText(list.get(row).getNamabarang());
+        form.getCmbsatuan().setSelectedItem(list.get(row).getSatuan());
+        form.getTxtharga().setText(String.valueOf(list.get(row).getHarga()));
+        form.getTxtstok().setText(String.valueOf(list.get(row).getStok()));
+    }
 }
