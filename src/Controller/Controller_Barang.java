@@ -44,7 +44,7 @@ public class Controller_Barang {
     }
     
     //method untuk menampilkan urutan kode barang berikutnya
-    public void tampiUrutanKode(){
+    public void tampilUrutanKode(){
         if(form.getCmbkategori().getSelectedIndex() > 0){
             form.getTxtkdbarang().setText(String.valueOf(model.autonumber2(Integer.parseInt(form.getCmbkategori().getSelectedItem().toString()))));
         }
@@ -73,5 +73,23 @@ public class Controller_Barang {
         }
     
         form.getTblbarang().setModel(tblModel);
+    }
+    
+    //method untuk membersihkan object inputan yang ada pada form
+    public void reset(){
+        form.getCmbkategori().setSelectedIndex(0);
+        form.getTxtnmkategori().setText("");
+        form.getTxtkdbarang().setText("");
+        form.getTxtnmbarang().setText("");
+        form.getCmbsatuan().setSelectedIndex(0);
+        form.getTxtharga().setText("");
+        form.getTxtstok().setText("");
+        form.getTxtkatakunci().setText("");
+        form.getTxtnmbarang().requestFocus();
+        form.getTxtnmkategori().setEditable(false);
+        form.getTxtkdbarang().setEditable(false);
+        isicombokategori();
+        tampilUrutanKode();
+        isiTable();
     }
 }
