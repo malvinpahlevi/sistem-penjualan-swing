@@ -138,4 +138,23 @@ public class Controller_Barang {
             JOptionPane.showMessageDialog(form, "Pilih data yang akan dihapus!");
         }
     }
+    
+    //method ini akan dipakai untuk memfilter data berdasarkan inputan yang ada pada text kata kunci
+    public void isiTableCari(){
+        list = model.getCari(form.getTxtkatakunci().getText().trim());
+        DefaultTableModel tblModel = new DefaultTableModel(new Object[][]{}, header);
+        Object[] data = new Object[header.length];
+        
+        for (Barang B : list) {
+            data[0] = B.getKodebarang();
+            data[1] = B.getNamabarang();
+            data[2] = B.getSatuan();
+            data[3] = B.getHarga();
+            data[4] = B.getStok();
+            data[5] = B.getKodekategori();
+            data[6] = B.getNamakategori();
+            tblModel.addRow(data); //menampilkan ke JTable
+        }
+        form.getTblbarang().setModel(tblModel);
+    }
 }
