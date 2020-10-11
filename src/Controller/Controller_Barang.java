@@ -32,4 +32,20 @@ public class Controller_Barang {
         form.getTblbarang().setShowVerticalLines(true);
         form.getTblbarang().setGridColor(Color.blue);    
     }
+    
+    //method ini akan dipakai untuk mengisi data kedalam combo kode kategori
+    public void isicombokategori(){
+        form.getCmbkategori().removeAllItems();
+        form.getCmbkategori().addItem("-Pilih-");
+        for(Barang B : model.IsiCombo()){
+            form.getCmbkategori().addItem(B);
+        }
+    }
+    
+    //method untuk menampilkan urutan kode barang berikutnya
+    public void tampiUrutanKode(){
+        if(form.getCmbkategori().getSelectedIndex() > 0){
+            form.getTxtkdbarang().setText(String.valueOf(model.autonumber2(Integer.parseInt(form.getCmbkategori().getSelectedItem().toString()))));
+        }
+    }
 }

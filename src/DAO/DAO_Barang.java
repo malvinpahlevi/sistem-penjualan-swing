@@ -265,6 +265,11 @@ public class DAO_Barang implements Model_DAO<Barang>{
         return list;
     }
 
+    @Override
+    public void delete(Integer kode) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     
 
     
