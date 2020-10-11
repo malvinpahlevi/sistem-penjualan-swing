@@ -239,9 +239,34 @@ public class DAO_Barang implements Model_DAO<Barang>{
         return list;
     }
     
+    
+    /*
+    *
+    * fungsi untuk membuat menampilkan nama kategori pada berdasarkan
+    * inputan kode kategori
+    */
     public List<Barang> getDataKategori(Integer id){
-        
+        PreparedStatement statement = null;
+        List<Barang> list = null;
+        try {
+            list = new ArrayList<Barang>();
+            statement = connection.prepareStatement(CARIKATEGORI);
+            statement.setInt(1, id);
+            ResultSet rs = statement.executeQuery();
+            
+            while (rs.next()) {
+                Barang b = new Barang();
+                b.setNamakategori(rs.getString("nmkategori"));
+                list.add(b);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
     }
+
+    
+
     
     
 }
