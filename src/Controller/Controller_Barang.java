@@ -103,4 +103,16 @@ public class Controller_Barang {
         form.getTxtharga().setText(String.valueOf(list.get(row).getHarga()));
         form.getTxtstok().setText(String.valueOf(list.get(row).getStok()));
     }
+    
+    //method untuk simpan data ke database
+    public void insert(){
+        Barang B = new Barang();
+        B.setKodebarang(form.getTxtkdbarang().getText());
+        B.setNamabarang(form.getTxtnmbarang().getText());
+        B.setSatuan(form.getCmbsatuan().getSelectedItem().toString());
+        B.setHarga(Integer.parseInt(form.getTxtharga().getText()));
+        B.setStok(Integer.parseInt(form.getTxtstok().getText()));
+        B.setKodekategori(Integer.parseInt(form.getCmbkategori().getSelectedItem().toString()));
+        model.insert(B);
+    }
 }
