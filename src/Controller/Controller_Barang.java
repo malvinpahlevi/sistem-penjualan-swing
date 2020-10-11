@@ -38,7 +38,7 @@ public class Controller_Barang {
         form.getCmbkategori().removeAllItems();
         form.getCmbkategori().addItem("-Pilih-");
         for(Barang B : model.IsiCombo()){
-            form.getCmbkategori().addItem(B);
+            form.getCmbkategori().addItem(Integer.toString(B.getKodekategori()));
         }
     }
     
