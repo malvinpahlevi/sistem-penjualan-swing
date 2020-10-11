@@ -157,4 +157,13 @@ public class Controller_Barang {
         }
         form.getTblbarang().setModel(tblModel);
     }
+    
+    //method untuk menampilkan nama kategori
+    public void tampilNamaKategori(){
+        if (form.getCmbkategori().getSelectedIndex() != 0) {
+            for (Barang b : model.getDataKategori(Integer.parseInt(form.getCmbkategori().getSelectedItem().toString()))) {
+                form.getTxtnmkategori().setText(b.getNamakategori());
+            }
+        }
+    }
 }
