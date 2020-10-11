@@ -10,6 +10,7 @@ import Model.Barang;
 import View.MBarang;
 import java.awt.Color;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -126,5 +127,15 @@ public class Controller_Barang {
         B.setKodekategori(Integer.parseInt(form.getCmbkategori().getSelectedItem().toString()));
         B.setKodebarang(form.getTxtkdbarang().getText());
         model.update(B);
+    }
+    
+    //method untuk menghapus data
+    public void delete(){
+        if(!form.getTxtkdbarang().getText().trim().isEmpty()){
+            String id = (form.getTxtkdbarang().getText());
+            model.delete(id);
+        } else {
+            JOptionPane.showMessageDialog(form, "Pilih data yang akan dihapus!");
+        }
     }
 }
