@@ -115,4 +115,16 @@ public class Controller_Barang {
         B.setKodekategori(Integer.parseInt(form.getCmbkategori().getSelectedItem().toString()));
         model.insert(B);
     }
+    
+    //method untuk mengubha data
+    public void update(){
+        Barang B = new Barang();
+        B.setNamabarang(form.getTxtnmbarang().getText());
+        B.setSatuan(form.getCmbsatuan().getSelectedItem().toString());
+        B.setHarga(Integer.parseInt(form.getTxtharga().getText()));
+        B.setStok(Integer.parseInt(form.getTxtstok().getText()));
+        B.setKodekategori(Integer.parseInt(form.getCmbkategori().getSelectedItem().toString()));
+        B.setKodebarang(form.getTxtkdbarang().getText());
+        model.update(B);
+    }
 }
