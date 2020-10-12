@@ -40,7 +40,7 @@ public class Controller_Barang {
         form.getCmbkategori().removeAllItems();
         form.getCmbkategori().addItem("-Pilih-");
         for(Barang B : model.IsiCombo()){
-            form.getCmbkategori().addItem(Integer.toString(B.getKodekategori()));
+            form.getCmbkategori().addItem(B.getKodekategori().toString());
         }
     }
     
@@ -124,6 +124,7 @@ public class Controller_Barang {
         B.setSatuan(form.getCmbsatuan().getSelectedItem().toString());
         B.setHarga(Integer.parseInt(form.getTxtharga().getText()));
         B.setStok(Integer.parseInt(form.getTxtstok().getText()));
+        //hilangkan .tostrnig() setelah selected item
         B.setKodekategori(Integer.parseInt(form.getCmbkategori().getSelectedItem().toString()));
         B.setKodebarang(form.getTxtkdbarang().getText());
         model.update(B);

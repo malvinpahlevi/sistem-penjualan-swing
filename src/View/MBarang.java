@@ -109,7 +109,7 @@ public class MBarang extends javax.swing.JFrame {
         getContentPane().add(jLabel2);
         jLabel2.setBounds(340, 310, 40, 30);
 
-        jLabel3.setText("Kode Barang");
+        jLabel3.setText("Kode Kategori");
         getContentPane().add(jLabel3);
         jLabel3.setBounds(30, 60, 190, 30);
 

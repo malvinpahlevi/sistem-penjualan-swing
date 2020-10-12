@@ -36,9 +36,7 @@ public class DAO_Barang implements Model_DAO<Barang>{
     String CARI = "SELECT a.*, b.* FROM barang a, kategori b WHERE a.kdkategori=b.kdkategori AND kdbrg LIKE ?";
     String CARIKATEGORI = "SELECT * FROM kategori WHERE kdkategori=?";
     String COMBO = "SELECT kdkategori FROM kategori ORDER BY convert(right(kdkategori, 2), signed integer)";
-    String COUNTER = "SELECT ifnull(max(convert(right(kdbrg,2),signed integer)),0) AS kode,"
-            + "ifnull(length(max(convert(right(kdbrg,2),signed integer))), 0) AS panjang"
-            + "FROM barang WHERE kdkategori=?";
+    String COUNTER = "SELECT ifnull(max(convert(right(kdbrg,2),signed integer)),0) as kode, ifnull(length(max(convert(right(kdbrg,2),signed integer))),0) as panjang FROM barang WHERE kdkategori=?";
     
     
     
@@ -95,7 +93,7 @@ public class DAO_Barang implements Model_DAO<Barang>{
                 statement.setInt(3, object.getHarga());
                 statement.setInt(4, object.getStok());
                 statement.setInt(5, object.getKodekategori());
-                statement.setString(5, object.getKodebarang());
+                statement.setString(6, object.getKodebarang());
                 statement.executeUpdate();
                 JOptionPane.showMessageDialog(null, "Data berhasil diubah!");
             }else{//jika data belum pernah disimpan
