@@ -36,8 +36,8 @@ public class DAO_Barang implements Model_DAO<Barang>{
     String CARI = "SELECT a.*, b.* FROM barang a, kategori b WHERE a.kdkategori=b.kdkategori AND kdbrg LIKE ?";
     String CARIKATEGORI = "SELECT * FROM kategori WHERE kdkategori=?";
     String COMBO = "SELECT kdkategori FROM kategori ORDER BY convert(right(kdkategori, 2), signed integer)";
-    String COUNTER = "SELECT ifnull(max(convert(right(kdbrg,2),signed integer)), 0) AS kode,"
-            + "ifnull(length(max(convet(right(kdbrg,2), signed integer))), 0) AS panjang"
+    String COUNTER = "SELECT ifnull(max(convert(right(kdbrg,2),signed integer)),0) AS kode,"
+            + "ifnull(length(max(convert(right(kdbrg,2),signed integer))), 0) AS panjang"
             + "FROM barang WHERE kdkategori=?";
     
     
@@ -200,13 +200,14 @@ public class DAO_Barang implements Model_DAO<Barang>{
             if (rs2.next()) {
                 nomor_berikutnya = rs2.getInt("kode") + 1;
                 if (rs2.getInt("kode")!= 0) {//jika kode kategori sudah pernah ada
-                    if (rs2.getInt("panjang")==1) {//jika jumlah digitnya adalah 1
-                        urutan = "B" + id + "0" + nomor_berikutnya;
-                    } else if (rs2.getInt("panjang") == 2){//jika jumlah digitnya adalah 2
-                        urutan = "B" + id + nomor_berikutnya;
-                    }else{//jika kode kategori belum pernah ada
-                        urutan = "B" + id + "01";
-                    }
+                        if (rs2.getInt("panjang")==1) {//jika jumlah digitnya adalah 1
+                              urutan = "B" + id + "0" + nomor_berikutnya;
+                            } else if (rs2.getInt("panjang") == 2){//jika jumlah digitnya adalah 2
+                                urutan = "B" + id + nomor_berikutnya;
+                            }
+                        }
+                else{//jika kode kategori belum pernah ada
+                            urutan = "B" + id + "01";
                 }
             }else{
                 JOptionPane.showMessageDialog(null, "Data tidak ditemukan!");
