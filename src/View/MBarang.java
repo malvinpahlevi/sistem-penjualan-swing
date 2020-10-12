@@ -97,7 +97,7 @@ public class MBarang extends javax.swing.JFrame {
         cmdubah = new javax.swing.JButton();
         cmdhapus = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
@@ -147,6 +147,15 @@ public class MBarang extends javax.swing.JFrame {
         txtnmbarang.setBounds(170, 210, 300, 40);
         getContentPane().add(txtnmkategori);
         txtnmkategori.setBounds(170, 110, 300, 40);
+
+        txtstok.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtstokKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtstokKeyReleased(evt);
+            }
+        });
         getContentPane().add(txtstok);
         txtstok.setBounds(380, 310, 90, 40);
 
@@ -175,6 +184,12 @@ public class MBarang extends javax.swing.JFrame {
         jLabel8.setText("Kata Kunci Pencarian");
         getContentPane().add(jLabel8);
         jLabel8.setBounds(30, 360, 190, 30);
+
+        txtkatakunci.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtkatakunciKeyReleased(evt);
+            }
+        });
         getContentPane().add(txtkatakunci);
         txtkatakunci.setBounds(170, 360, 150, 40);
 
@@ -256,7 +271,8 @@ public class MBarang extends javax.swing.JFrame {
         getContentPane().add(cmdhapus);
         cmdhapus.setBounds(550, 200, 140, 40);
 
-        pack();
+        setSize(new java.awt.Dimension(757, 578));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void cmdbatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdbatalActionPerformed
@@ -323,6 +339,23 @@ public class MBarang extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Inputan data harus berupa angka!");
         }
     }//GEN-LAST:event_txthargaKeyReleased
+
+    private void txtstokKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtstokKeyPressed
+        if (evt.getKeyCode()==KeyEvent.VK_ENTER) {
+            this.cmdsimpan.requestFocus();
+        }
+    }//GEN-LAST:event_txtstokKeyPressed
+
+    private void txtstokKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtstokKeyReleased
+        char karakter = evt.getKeyChar();
+        if (!(((karakter >= '0') && (karakter <= '9') || (karakter == KeyEvent.VK_BACK_SPACE) || (karakter == KeyEvent.VK_DELETE) || (karakter == KeyEvent.VK_ENTER)))) {
+            JOptionPane.showMessageDialog(null, "Inputan data harus berupa angka!");
+        }
+    }//GEN-LAST:event_txtstokKeyReleased
+
+    private void txtkatakunciKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtkatakunciKeyReleased
+        controller.isiTableCari();
+    }//GEN-LAST:event_txtkatakunciKeyReleased
 
     /**
      * @param args the command line arguments

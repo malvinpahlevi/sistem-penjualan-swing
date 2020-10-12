@@ -67,6 +67,11 @@ public class MenuUtama extends javax.swing.JFrame {
         MMenu.add(MKategori);
 
         MBarang.setText("Entry Data Barang");
+        MBarang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MBarangActionPerformed(evt);
+            }
+        });
         MMenu.add(MBarang);
 
         MPetugas.setText("Entry Data Petugas");
@@ -150,6 +155,13 @@ public class MenuUtama extends javax.swing.JFrame {
         p.setVisible(true);
         setLocationRelativeTo(this);
     }//GEN-LAST:event_MPetugasActionPerformed
+
+    private void MBarangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MBarangActionPerformed
+        View.MBarang B = new View.MBarang();
+        B.setVisible(true);
+        setLocationRelativeTo(this);
+        B.getTxtnmbarang().requestFocus();
+    }//GEN-LAST:event_MBarangActionPerformed
 
     /**
      * @param args the command line arguments
