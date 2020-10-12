@@ -5,7 +5,9 @@
  */
 package View;
 
+import java.awt.event.KeyEvent;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
@@ -15,12 +17,15 @@ import javax.swing.JTextField;
  */
 public class MBarang extends javax.swing.JFrame {
 
+    Controller.Controller_Barang controller;
     /**
      * Creates new form MBarang
      */
     public MBarang() {
         initComponents();
         setLocationRelativeTo(this);
+        controller = new Controller.Controller_Barang(this);
+        controller.reset();
     }
 
     public JTable getTblbarang() {
@@ -125,8 +130,19 @@ public class MBarang extends javax.swing.JFrame {
         jLabel7.setBounds(30, 260, 190, 30);
 
         cmbsatuan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-Pilih-", "Item 2", "Item 3", "Item 4" }));
+        cmbsatuan.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                cmbsatuanKeyPressed(evt);
+            }
+        });
         getContentPane().add(cmbsatuan);
         cmbsatuan.setBounds(170, 260, 150, 40);
+
+        txtnmbarang.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtnmbarangKeyPressed(evt);
+            }
+        });
         getContentPane().add(txtnmbarang);
         txtnmbarang.setBounds(170, 210, 300, 40);
         getContentPane().add(txtnmkategori);
@@ -135,6 +151,11 @@ public class MBarang extends javax.swing.JFrame {
         txtstok.setBounds(380, 310, 90, 40);
 
         cmbkategori.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-Pilih-", "Item 2", "Item 3", "Item 4" }));
+        cmbkategori.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbkategoriItemStateChanged(evt);
+            }
+        });
         cmbkategori.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbkategoriActionPerformed(evt);
@@ -160,6 +181,15 @@ public class MBarang extends javax.swing.JFrame {
         jLabel10.setText("Harga (Rp.)");
         getContentPane().add(jLabel10);
         jLabel10.setBounds(30, 310, 190, 30);
+
+        txtharga.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txthargaKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txthargaKeyReleased(evt);
+            }
+        });
         getContentPane().add(txtharga);
         txtharga.setBounds(170, 310, 150, 40);
 
@@ -174,6 +204,11 @@ public class MBarang extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblbarang.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblbarangMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblbarang);
 
         getContentPane().add(jScrollPane1);
@@ -192,6 +227,11 @@ public class MBarang extends javax.swing.JFrame {
         cmdsimpan.setBackground(new java.awt.Color(153, 255, 153));
         cmdsimpan.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         cmdsimpan.setText("SIMPAN");
+        cmdsimpan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdsimpanActionPerformed(evt);
+            }
+        });
         getContentPane().add(cmdsimpan);
         cmdsimpan.setBounds(550, 100, 140, 40);
 
@@ -220,15 +260,17 @@ public class MBarang extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cmdbatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdbatalActionPerformed
-        // TODO add your handling code here:
+        controller.reset();
     }//GEN-LAST:event_cmdbatalActionPerformed
 
     private void cmdubahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdubahActionPerformed
-        // TODO add your handling code here:
+        controller.update();
+        controller.reset();
     }//GEN-LAST:event_cmdubahActionPerformed
 
     private void cmdhapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdhapusActionPerformed
-        // TODO add your handling code here:
+        controller.delete();
+        controller.reset();
     }//GEN-LAST:event_cmdhapusActionPerformed
 
     private void cmbkategoriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbkategoriActionPerformed
@@ -238,6 +280,49 @@ public class MBarang extends javax.swing.JFrame {
     private void txtkdbarangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtkdbarangActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtkdbarangActionPerformed
+
+    private void cmdsimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdsimpanActionPerformed
+        controller.insert();
+        controller.reset();
+    }//GEN-LAST:event_cmdsimpanActionPerformed
+
+    private void tblbarangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblbarangMouseClicked
+        controller.isiField(tblbarang.getSelectedRow());
+        this.txtnmbarang.requestFocus();
+    }//GEN-LAST:event_tblbarangMouseClicked
+
+    private void cmbkategoriItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbkategoriItemStateChanged
+        if(getCmbkategori().getSelectedIndex() > 0){
+            controller.tampilUrutanKode();
+            controller.tampilNamaKategori();
+            txtnmbarang.requestFocus();
+        }
+    }//GEN-LAST:event_cmbkategoriItemStateChanged
+
+    private void txtnmbarangKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnmbarangKeyPressed
+        if (evt.getKeyCode()==KeyEvent.VK_ENTER) {
+            this.cmbsatuan.requestFocus();
+        }
+    }//GEN-LAST:event_txtnmbarangKeyPressed
+
+    private void cmbsatuanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cmbsatuanKeyPressed
+        if (evt.getKeyCode()==KeyEvent.VK_ENTER) {
+            this.txtharga.requestFocus();
+        }
+    }//GEN-LAST:event_cmbsatuanKeyPressed
+
+    private void txthargaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txthargaKeyPressed
+        if (evt.getKeyCode()==KeyEvent.VK_ENTER) {
+            this.txtstok.requestFocus();
+        }
+    }//GEN-LAST:event_txthargaKeyPressed
+
+    private void txthargaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txthargaKeyReleased
+        char karakter = evt.getKeyChar();
+        if (!((karakter >= '0') && (karakter <= '9') || (karakter == KeyEvent.VK_BACK_SPACE) || (karakter == KeyEvent.VK_DELETE) || (karakter == KeyEvent.VK_ENTER))) {
+            JOptionPane.showMessageDialog(null, "Inputan data harus berupa angka!");
+        }
+    }//GEN-LAST:event_txthargaKeyReleased
 
     /**
      * @param args the command line arguments
