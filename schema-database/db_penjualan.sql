@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 19, 2020 at 05:16 AM
+-- Generation Time: Oct 13, 2020 at 02:29 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.7
 
@@ -33,8 +33,17 @@ CREATE TABLE `barang` (
   `Satuan` varchar(10) DEFAULT NULL,
   `HargaBrg` int(6) DEFAULT NULL,
   `Stok` int(3) DEFAULT NULL,
-  `KdKategori` varchar(3) DEFAULT NULL
+  `KdKategori` int(3) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `barang`
+--
+
+INSERT INTO `barang` (`KdBrg`, `NmBrg`, `Satuan`, `HargaBrg`, `Stok`, `KdKategori`) VALUES
+('B401', 'panadol', 'Item 2', 232322, 2, 4),
+('B501', 'panadol', 'Item 2', 232322, 2, 5),
+('B601', 'wewwewe', 'Item 3', 22232, 2, 6);
 
 -- --------------------------------------------------------
 
@@ -77,7 +86,10 @@ CREATE TABLE `kategori` (
 --
 
 INSERT INTO `kategori` (`KdKategori`, `NmKategori`) VALUES
-(2, 'obat');
+(2, 'obat'),
+(4, 'kue'),
+(5, 'obat keras'),
+(6, 'tablet');
 
 -- --------------------------------------------------------
 
@@ -99,6 +111,27 @@ CREATE TABLE `pelanggan` (
 INSERT INTO `pelanggan` (`KdPlg`, `NmPlg`, `AlamatPlg`, `TelpPlg`) VALUES
 (1, 'Angga Aji', 'Cengkareng', '1123414123'),
 (2, 'test', '23144', '444123123');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `petugas`
+--
+
+CREATE TABLE `petugas` (
+  `kdpetugas` int(3) NOT NULL,
+  `nmpetugas` varchar(50) DEFAULT NULL,
+  `alamatpetugas` varchar(50) DEFAULT NULL,
+  `telppetugas` varchar(15) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `petugas`
+--
+
+INSERT INTO `petugas` (`kdpetugas`, `nmpetugas`, `alamatpetugas`, `telppetugas`) VALUES
+(1, 'acuy', 'cengkareng', '02321'),
+(2, 'asdasd22', 'asdasd22', 'asdasd');
 
 --
 -- Indexes for dumped tables
@@ -134,6 +167,22 @@ ALTER TABLE `kategori`
 --
 ALTER TABLE `pelanggan`
   ADD PRIMARY KEY (`KdPlg`);
+
+--
+-- Indexes for table `petugas`
+--
+ALTER TABLE `petugas`
+  ADD PRIMARY KEY (`kdpetugas`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `petugas`
+--
+ALTER TABLE `petugas`
+  MODIFY `kdpetugas` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables

@@ -57,7 +57,7 @@ public class Controller_Pelanggan {
     }
 
     //method untuk menampilkan semua data kedalam JTable
-    private void isiTable() {
+    public void isiTable() {
         list = model.getAll();
         
         //Script agar JTable tidak bisa diedit
